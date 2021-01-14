@@ -21,15 +21,7 @@ async function bootstrap() {
         credential: admin.credential.cert(adminConfig),
         databaseURL,
     })
-    // const db = admin.firestore()
-    // const docRef = db.collection('users')
-    // const c = await docRef.add({
-    //     first: 'Ade',
-    //     last: 'Lovelace',
-    //     born: 1816,
-    // })
-    //
-    // console.log(c)
+
     await app.listen(3000)
     console.log(`Application is running on: ${await app.getUrl()}`)
 }

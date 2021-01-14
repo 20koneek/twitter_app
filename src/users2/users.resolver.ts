@@ -2,8 +2,8 @@ import { Inject } from '@nestjs/common'
 import { Query, Resolver, Subscription } from '@nestjs/graphql'
 import { PubSubEngine } from 'graphql-subscriptions'
 import { User } from 'src/users/models/User.model'
-import { withCancel } from 'src/users/users.helpers'
-import { UsersService } from 'src/users/users.service'
+import { withCancel } from 'src/users2/users.helpers'
+import { UsersService } from 'src/users2/users.service'
 
 const s = 'test'
 

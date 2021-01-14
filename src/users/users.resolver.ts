@@ -11,15 +11,17 @@ export class UsersResolver {
     ) {
     }
 
-    @Query(() => String)
-    async user(): Promise<string> {
-        return '1243'
+    @Query(() => User)
+    user(
+        @Args('id') id: string,
+    ): Promise<User> {
+        return this.service.findById(id)
     }
 
     @Mutation(() => User)
-    async createUser(
+    createUser(
         @Args('input') input: NewUserInput,
     ): Promise<User> {
-        return await this.service.create(input)
+        return this.service.create(input)
     }
 }

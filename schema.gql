@@ -2,10 +2,19 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Query {
-  user: String!
+type User {
+  id: ID!
+  name: String!
 }
 
-type Subscription {
-  test2: String!
+type Query {
+  user(id: String!): User!
+}
+
+type Mutation {
+  createUser(input: NewUserInput!): User!
+}
+
+input NewUserInput {
+  name: String!
 }
