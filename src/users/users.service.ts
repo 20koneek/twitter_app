@@ -1,22 +1,35 @@
+import admin from 'firebase-admin'
 import { Injectable } from '@nestjs/common'
-import { NewUserInput } from 'src/users/dto/new-user.input'
-import { User } from 'src/users/models/User.model'
+import { User } from './models/User.model'
+import { NewUserInput } from './dto/new-user.input'
+import { UsersConverter } from './users.converter'
 
 @Injectable()
 export class UsersService {
-    async create(data: NewUserInput): Promise<User> {
-        return {} as any
+    getCollection = (): FirebaseFirestore.CollectionReference<NewUserInput> => (
+        admin.firestore().collection('users').withConverter(UsersConverter)
+    )
+
+    async create(input: NewUserInput): Promise<User> {
+        const { id } = await this.getCollection().add(input)
+
+        return {
+            ...input,
+            id,
+        }
     }
 
-    async findOneById(id: string): Promise<User> {
-        return {} as any
-    }
+    async findById(id: string): Promise<User> {
+        const data = await this.getCollection().doc(id).get()
+        const user = data.data()
 
-    async findAll(): Promise<User[]> {
-        return [] as User[]
-    }
+        if (!user) {
+            throw new Error('user not found')
+        }
 
-    async remove(id: string): Promise<boolean> {
-        return true
+        return {
+            id,
+            ...user,
+        }
     }
 }

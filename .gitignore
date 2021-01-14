@@ -16,3 +16,7 @@
 
 # dist
 /dist
+
+# env
+.env
+*-firebase-adminsdk-*

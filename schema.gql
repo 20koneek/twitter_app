@@ -2,21 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
-  id: ID!
-  name: String!
-}
-
 type Query {
-  user(id: String!): User!
-  users: [User!]!
+  user: String!
 }
 
-type Mutation {
-  crateUser(newRecipeData: NewUserInput!): User!
-  deleteUser(id: String!): Boolean!
-}
-
-input NewUserInput {
-  name: String!
+type Subscription {
+  test2: String!
 }
